@@ -1,27 +1,21 @@
-//  Rachel Crosley
+//  Rachel Crosley & Daniel Lind
 //  battleship2.0.cpp
 //  Battleship2.0
 //  2/9/18
 
+
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 #include "battleship2.0.h"
 
-#include <iostream>
-#include <map>
-#include <string>
-using std::map;
-using std::string;
+// Here is a small helper for you! Have a look.
+#include "ResourcePath.hpp"
 
-
-
-
-
-
-
-
-int main() {
+int main()
+{
     
-    map<string, bool> compGameBoard;
-    map<string, bool> playerGameBoard;
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Battleship");
+
     
     
     
@@ -29,5 +23,11 @@ int main() {
     
     
     
-    return 0;
+
+    return EXIT_SUCCESS;
 }
+
+
+
+
+
