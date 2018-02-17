@@ -14,7 +14,7 @@ TEST_CASE("Constructor working properly") {
     size_t length=3;
     Ships destroyer(3);
     INFO("Length should be three");
-    REQUIRE(destroyer.getLength()==3);
+    REQUIRE(destroyer.getLength()==2);
     Ships airCarrier(5);
     INFO("Length should be 5");
     REQUIRE(airCarrier.getLength()==5);

@@ -33,7 +33,7 @@ using std::pair;
     //gets all of the coordinates of the ship
     //returns vector
     vector<pair<x, y> > Ships::getCoordinates()    {               //returns the coordinates of a ship
-
+        return _coordinates;
     }
     //gets the length of the boat
     size_t Ships::getLength() {                   //gets length of ship
@@ -42,8 +42,25 @@ using std::pair;
     //updates the coordinates of the boat by
     //moving through the vector of pairs
     //should be used for the drag and drop placement
-    void Ships::updateCoordinates() {            //updates the coordinates of a ship
-
+    void Ships::updateCoordinates(pair<x, y> shipfront) {            //updates the coordinates of a ship
+        _coordinates[0]=shipfront;
+        if(_orientation==0) {       //orientation=0 is horizontal
+            for(size_t i=1; i<_length; ++i)                //orientation=1 is vertical
+            {
+                ++_coordinates[i].first;
+            }
+        } else  {
+            for(size_t i=1; i<_length; ++i)                //orientation=1 is vertical
+            {
+                ++_coordinates[i].second;
+            }
+        }
+    }
+    //updates the orientation of the boat(horizontal or vertical)
+    //used to check if only the x or y coordinates
+    //should be updated when user clicks button to change orientation
+    void Ships::updateOrientation() {
+        _orientation = !_orientation;
     }
     //checks if a fired shot has hit
     bool Ships::checkHit(pair<x, y> firedAt)    {   //checks if location fired at contains a ship
