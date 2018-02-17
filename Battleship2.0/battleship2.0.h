@@ -22,7 +22,9 @@ using y=size_t;
 
 class Ships {
 public:
-    Ships(const int & length);      //constructor for Ships
+    static size_t _count;
+
+    Ships(const size_t & length);      //constructor for Ships
     vector<pair<x, y> > getCoordinates();               //returns the coordinates of a ship
     size_t getLength();                    //gets length of ship
     void updateCoordinates();            //updates the coordinates of a ship
