@@ -25,6 +25,9 @@ public:
     static size_t _count;   //static variable for keeping track of amount of ships
 
     Ships(const size_t & length);      //constructor for Ships
+    ~Ships();
+    Ships(const Ships & boat)=delete;
+    Ships & operator=(const Ships & boat)=delete;
     vector<pair<x, y> > getCoordinates();               //returns the coordinates of a ship
     size_t getLength();                    //gets length of ship
     void updateCoordinates(pair<x, y> shipfront);            //updates the coordinates of a ship

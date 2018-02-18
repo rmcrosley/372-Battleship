@@ -28,7 +28,12 @@ using std::pair;
         {
             _coordinates.push_back(std::make_pair(i, _count));
         }
-        ++_count;
+        _count++;
+    }
+    Ships::~Ships()    {
+        _count--;
+        _length=0;
+        _coordinates.clear();
     }
     //gets all of the coordinates of the ship
     //returns vector
