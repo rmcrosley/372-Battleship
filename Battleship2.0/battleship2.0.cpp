@@ -69,7 +69,14 @@ using std::pair;
     }
     //checks if a fired shot has hit
     bool Ships::checkHit(pair<x, y> firedAt)    {   //checks if location fired at contains a ship
-
+        for(int i = 1; i < _coordinates.size(); ++i) {
+            if(_coordinates[i] == firedAt) {
+                return true;
+            }
+            else {
+            }
+        }
+        return false;
     }
     //checks if a chosen location is currently occupied by another
     //boat because stacking boats is BAD

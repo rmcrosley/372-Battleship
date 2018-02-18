@@ -33,6 +33,18 @@ TEST_CASE("Checks if getCoordinates after constructing returns correctly") {
     REQUIRE(vec0[1].second==p1.second);
     REQUIRE(vec0[2].second==p2.second);
 }
+TEST_CASE("Checks if checkHit returns correctly") {
+    Ships tugboat(2);
+    pair<x, y> c1(1,2);
+    INFO("Should return true if hit");
+    REQUIRE(tugboat.checkHit(c1) == true);
+    pair<x, y> c2(0,2);
+    INFO("Should return true if hit");
+    REQUIRE(tugboat.checkHit(c2) == true);
+    pair<x,y> c3(-1,2);
+    INFO("Should return false since not on board");
+    REQUIRE(tugboat.checkHit(c3) == false);
+}
 
 
 
