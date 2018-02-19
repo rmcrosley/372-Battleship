@@ -44,9 +44,14 @@ using std::pair;
     size_t Ships::getLength() {                   //gets length of ship
         return _length;
     }
+    bool Ships::getOrientation()   {
+        return _orientation;
+    }
     //updates the coordinates of the boat by
     //moving through the vector of pairs
     //should be used for the drag and drop placement
+    //takes the coordinates for the very front of the ship and then
+    //calculates the rest based off of front and orientation
     void Ships::updateCoordinates(pair<x, y> shipfront) {            //updates the coordinates of a ship
         _coordinates[0]=shipfront;
         if(_orientation==0) {       //orientation=0 is horizontal
@@ -55,7 +60,7 @@ using std::pair;
                 ++_coordinates[i].first;
             }
         } else  {
-            for(size_t i=1; i<_length; ++i)                //orientation=1 is vertical
+            for(size_t i=1; i<_length; ++i)
             {
                 ++_coordinates[i].second;
             }
@@ -79,7 +84,7 @@ using std::pair;
     //checks if a chosen location is currently occupied by another
     //boat because stacking boats is BAD
     bool Ships::ifTaken(pair<x, y> placedAt)    {   //checks if user selected location is occupied by another ship
-
+        checkHit(placedAt);
     }
 
 

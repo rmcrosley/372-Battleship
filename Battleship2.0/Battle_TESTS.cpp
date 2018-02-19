@@ -38,6 +38,7 @@ TEST_CASE("Checks if checkHit returns correctly") {
     pair<x, y> c1(1,0);
     pair<x, y> c2(0,0);
     pair<x,y> c3(-1,2);
+    Ships destroyer(3);
     {
     INFO("Firing at coordinates (1,0) should return true");
     REQUIRE(tugboat.checkHit(c1) == true);
@@ -50,7 +51,71 @@ TEST_CASE("Checks if checkHit returns correctly") {
     INFO("Should return false since not on board");
     REQUIRE(tugboat.checkHit(c3) == false);
     }
+    //Checking if new boat is spawned below old
+    pair<x,y> p0(0,1);
+    pair<x,y> p1(1,1);
+    pair<x,y> p2(2,1);
+    {
+    INFO("Firing at previous coordinates (1,0) should return false");
+    REQUIRE(destroyer.checkHit(c1) == false);
+    }
+    {
+    INFO("Firing at previous coordinates (0,0) should return false");
+    REQUIRE(destroyer.checkHit(c2) == false);
+    }
+    {
+    INFO("Firing at coordinates of newly constructed destroyer: (0,1) \n Should return true");
+    REQUIRE(destroyer.checkHit(p0) == true);
+    }
+    {
+    INFO("Firing at coordinates of newly constructed destroyer: (1,1) \n Should return true");
+    REQUIRE(destroyer.checkHit(p1) == true);
+    }
+    {
+    INFO("Firing at coordinates of newly constructed destroyer: (2,1) \n Should return true");
+    REQUIRE(destroyer.checkHit(p2) == true);
+    }
+    
 }
+TEST_CASE("Checks if ifTaken returns correctly") {
+    Ships submarine(2);
+    pair<x, y> c1(1,0);
+    pair<x, y> c2(0,0);
+    pair<x,y> c3(-1,2);
+    {
+    INFO("Firing at coordinates (1,0) should return true");
+    REQUIRE(submarine.ifTaken(c1) == true);
+    }
+    {
+    INFO("Firing at coordinates (0,0) should return true");
+    REQUIRE(submarine.ifTaken(c2) == true);
+    }
+    {
+    INFO("Should return false since not on board");
+    REQUIRE(submarine.ifTaken(c3) == false);
+    }
+}
+TEST_CASE("Checks if updateOrientation works properly")
+{
+    Ships s0(2);
+    Ships s1(3);
+    {
+    INFO("Checking if newly constructed orientation is horizontal(0)");
+    REQUIRE(s0.getOrientation()== 0);
+    REQUIRE(s1.getOrientation()==0);
+    }
+    {
+        s0.updateOrientation();
+        INFO("Updated orientation of ship, should be vertical(1) now");
+        REQUIRE(s0.getOrientation()==1);
+        INFO("Orientation of s1 should still be horizontal(0)");
+        REQUIRE(s1.getOrientation()==0);
+        s1.updateOrientation();
+        INFO("Orientation of s1 should be vertical now(1)")
+        REQUIRE(s1.getOrientation()==1);
+    }
+}
+
 
 
 

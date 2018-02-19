@@ -30,6 +30,7 @@ public:
     Ships & operator=(const Ships & boat)=delete;
     vector<pair<x, y> > getCoordinates();               //returns the coordinates of a ship
     size_t getLength();                    //gets length of ship
+    bool getOrientation();                  //gets orientation of ship (horizontal=0 or vertical=1)
     void updateCoordinates(pair<x, y> shipfront);            //updates the coordinates of a ship
     void updateOrientation();               //updates the orientation of the ship(horizontal and vertical)
     bool checkHit(pair<x, y> firedAt);   //checks if location fired at contains a ship
@@ -38,7 +39,7 @@ public:
 private:
     vector<pair<x, y> > _coordinates;
     size_t _length;
-    bool _orientation;
+    bool _orientation=0;
 };
 
 
