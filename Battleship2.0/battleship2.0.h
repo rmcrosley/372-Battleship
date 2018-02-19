@@ -39,7 +39,7 @@ public:
 private:
     vector<pair<x, y> > _coordinates;
     size_t _length;
-    bool _orientation=0;
+    bool _orientation;
 };
 
 

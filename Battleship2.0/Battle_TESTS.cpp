@@ -115,6 +115,32 @@ TEST_CASE("Checks if updateOrientation works properly")
         REQUIRE(s1.getOrientation()==1);
     }
 }
+TEST_CASE("Checks if updateCoordinates is working correctly.")  {
+    Ships s0(2);
+    Ships s1(3);
+    pair<x, y> p0(3,5);
+    pair<x, y> p1(4,5);
+    pair<x,y> p2(5,5);
+    
+    pair<x, y> c1(3,6);
+    s0.updateCoordinates(p0);
+    auto vec0=s0.getCoordinates();
+    {
+    INFO("Checking if new coordinate are properly (3,5); (4,5); and(5,5).");
+    REQUIRE(vec0[0].first==p0.first);
+    REQUIRE(vec0[0].second==p0.second);
+    REQUIRE(vec0[1].first==p1.first);
+    REQUIRE(vec0[1].second==p1.second);
+    }
+    s0.updateOrientation();
+    s0.updateCoordinates(p0);
+    vec0=s0.getCoordinates();
+    INFO("Checking if new coordinates of s0 after updating orientation are \n(3,5);(3,6); and (3,7).");
+    REQUIRE(vec0[0].first==p0.first);
+    REQUIRE(vec0[0].second==p0.second);
+    REQUIRE(vec0[1].first==c1.first);
+    REQUIRE(vec0[1].second==c1.second);
+}
 
 
 

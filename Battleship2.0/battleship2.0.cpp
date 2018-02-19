@@ -24,6 +24,7 @@ using std::pair;
     size_t Ships::_count=0;
     Ships::Ships(const size_t & length)   {      //constructor for Ships
         _length=length;
+        _orientation=0;
         for(size_t i=0; i<_length; ++i)
         {
             _coordinates.push_back(std::make_pair(i, _count));
@@ -54,15 +55,21 @@ using std::pair;
     //calculates the rest based off of front and orientation
     void Ships::updateCoordinates(pair<x, y> shipfront) {            //updates the coordinates of a ship
         _coordinates[0]=shipfront;
+        x temp_x=shipfront.first;
+        y temp_y=shipfront.second;
         if(_orientation==0) {       //orientation=0 is horizontal
             for(size_t i=1; i<_length; ++i)                //orientation=1 is vertical
             {
-                ++_coordinates[i].first;
+                ++temp_x;
+                _coordinates[i].first=temp_x;
+                _coordinates[i].second=shipfront.second;
             }
         } else  {
             for(size_t i=1; i<_length; ++i)
             {
-                ++_coordinates[i].second;
+                ++temp_y;
+                _coordinates[i].second=temp_y;
+                _coordinates[i].first=shipfront.first;
             }
         }
     }
