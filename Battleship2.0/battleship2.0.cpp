@@ -69,11 +69,9 @@ using std::pair;
     }
     //checks if a fired shot has hit
     bool Ships::checkHit(pair<x, y> firedAt)    {   //checks if location fired at contains a ship
-        for(int i = 1; i < _coordinates.size(); ++i) {
+        for(int i = 0; i < _coordinates.size(); ++i) {
             if(_coordinates[i] == firedAt) {
                 return true;
-            }
-            else {
             }
         }
         return false;
