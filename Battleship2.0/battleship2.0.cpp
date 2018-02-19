@@ -7,7 +7,6 @@
 //#include <SFML/Audio.hpp>
 //#include <SFML/Graphics.hpp>
 #include "battleship2.0.h"
-#include "ResourcePath.hpp"
 #include "catch.hpp"
 #include <map>
 #include <utility>
@@ -77,7 +76,7 @@ using std::pair;
     //used to check if only the x or y coordinates
     //should be updated when user clicks button to change orientation
     void Ships::updateOrientation() {
-        _orientation = !_orientation;
+        _orientation = !_orientation; 
     }
     //checks if a fired shot has hit
     bool Ships::checkHit(pair<x, y> firedAt)    {   //checks if location fired at contains a ship
@@ -91,7 +90,7 @@ using std::pair;
     //checks if a chosen location is currently occupied by another
     //boat because stacking boats is BAD
     bool Ships::ifTaken(pair<x, y> placedAt)    {   //checks if user selected location is occupied by another ship
-        checkHit(placedAt);
+        return checkHit(placedAt);
     }
 
 

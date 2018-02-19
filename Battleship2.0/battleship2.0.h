@@ -7,7 +7,7 @@
 #ifndef battleship2_0_h
 #define battleship2_0_h
 
-#include "ResourcePath.hpp"
+
 #include "catch.hpp"
 #include <map>
 #include <utility>
