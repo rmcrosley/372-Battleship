@@ -1,13 +1,13 @@
 //  Rachel Crosley & Daniel Lind
 //  battleship2.0.cpp
 //  Battleship2.0
-//  2/9/18
+//  2/19/18
 
 
 //#include <SFML/Audio.hpp>
 //#include <SFML/Graphics.hpp>
 #include "battleship2.0.h"
-#include "catch.hpp"
+//#include "catch.hpp"
 #include <map>
 #include <utility>
 #include <string>

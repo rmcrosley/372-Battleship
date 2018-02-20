@@ -1,14 +1,14 @@
-//  Rachel Crosley
+//  Rachel Crosley and Daniel Lind
 //  battleship2.0.cpp
 //  Battleship2.0
-//  2/9/18
+//  2/19/18
 
 
 #ifndef battleship2_0_h
 #define battleship2_0_h
 
 
-#include "catch.hpp"
+//#include "catch.hpp"
 #include <map>
 #include <utility>
 #include <string>
@@ -35,6 +35,7 @@ public:
     void updateOrientation();               //updates the orientation of the ship(horizontal and vertical)
     bool checkHit(pair<x, y> firedAt);   //checks if location fired at contains a ship
     bool ifTaken(pair<x, y> placedAt);   //checks if user selected location is occupied by another ship
+    //function for if sunk
 
 private:
     vector<pair<x, y> > _coordinates;
