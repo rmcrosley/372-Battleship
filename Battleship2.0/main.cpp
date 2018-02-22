@@ -1,16 +1,46 @@
 //  Rachel Crosley & Daniel Lind
-//  battleship2.0.cpp
+//  main.cpp
 //  Battleship2.0
-//  2/19/18
+//  2/21/18
 
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "GameBoard.h"
 
 
 int main() {
     
-    sf::RenderWindow window(sf::VideoMode(1000, 600), "Battle Time");
+    sf::RenderWindow window(sf::VideoMode(1035, 630), "Battle Time");
+    
+    
+    const int spots[] = {
+        
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+        0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    };
+    
+    GameMap map;
+    if(!map.load("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/GameBackDrop.jpg", sf::Vector2u (45, 45), spots, 23, 14)) {
+        return -1;
+    }
+    
+    
+    
+    
+    
     
     while(window.isOpen()) {
         sf::Event event;
@@ -25,18 +55,9 @@ int main() {
                     break;
             }
         }
-        //update game
+        
         window.clear();
-        //draw objects here
-        //draw background image
-        sf::Texture texture;
-        if(!texture.loadFromFile("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/GameBackDrop.jpg")) {
-        }
-        sf::Sprite background(texture);
-        window.draw(background);
-        
-        
-        
+        window.draw(map);
         window.display();
     }
     

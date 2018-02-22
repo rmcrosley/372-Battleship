@@ -1,7 +1,7 @@
 //  Rachel Crosley and Daniel Lind
-//  battleship2.0.cpp
+//  battleship2.0.h
 //  Battleship2.0
-//  2/19/18
+//  2/21/18
 
 
 #ifndef battleship2_0_h
