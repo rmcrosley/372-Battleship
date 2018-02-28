@@ -13,7 +13,8 @@
 #include "battleship2.0.h"
 #include "PlacingShips.h"
 using std::vector;
-
+using std::cout;
+using std::endl;
 
 int main() {
 	size_t boardSize = 45 * 10;
@@ -206,12 +207,14 @@ int main() {
 				break;
 			}
 		}
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) 
+		{
+			cout << "You have clicked" << endl;
 			sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-
-			if (first5 < 5) {
-				if (mousePos.y >= 45 && mousePos.y <= 495) {
-					if (mousePos.x >= 45 && mousePos.x <= 495) {
+				if (mousePos.y >= 45 && mousePos.y <= 495) 
+				{
+					if (mousePos.x >= 45 && mousePos.x <= 495) 
+					{
 						int m;
 						int n;
 
@@ -220,7 +223,17 @@ int main() {
 
 						n = mousePos.y % 45;
 						mousePos.y = mousePos.y - n;
-					}
+						sf::RectangleShape clickedShip;
+						cout << "Coordinates are: (" << mousePos.x << ", " << mousePos.y << ")" << endl;
+						for (auto ship : shipShapes) {
+							if (mousePos.x >= ship.getPoint(0).x && mousePos.x <= ship.getPoint(2).x )
+								if(mousePos.y >= ship.getPoint(2).y && mousePos.y <= ship.getPoint(0).y )
+									clickedShip = ship;
+						}
+						while (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
+						{
+							followMouse(std::make_pair(mousePos.x, mousePos.y), clickedShip );
+						}
 				}
 			}
 		}

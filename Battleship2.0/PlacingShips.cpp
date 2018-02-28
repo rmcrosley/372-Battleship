@@ -55,8 +55,8 @@ void placeShipsOnBoard_comp() {
 
 }
 
-
-vector<sf::RectangleShape> placeShipsOnBoard_user(vector<Ships*> fleet) {
+//default constructs the sprites for the ships based off of the constructor for Ships class
+vector<sf::RectangleShape> placeShipsOnBoard_user(const vector<Ships*> & fleet) {
 	sf::RectangleShape tube;
 	sf::RectangleShape canoe;
 	sf::RectangleShape kayak;
@@ -72,6 +72,19 @@ vector<sf::RectangleShape> placeShipsOnBoard_user(vector<Ships*> fleet) {
 	}
 
 	return shapes;
+}
+
+void followMouse(const pair<size_t, size_t> & shipFront, sf::RectangleShape & shipSprite) {
+	shipSprite.setPosition(shipFront.first, shipFront.second);
+}
+
+void dragAndDropUpdate(const pair<size_t, size_t> & shipFront, 
+						sf::RectangleShape & shipSprite, 
+						Ships & ship)	{
+	//updates the coordinates of the Ships object
+	ship.updateCoordinates(shipFront);
+	//then adjusts the sprite to the new position to be redrawn
+	shipSprite.setPosition(shipFront.first, shipFront.second);
 }
 
 
