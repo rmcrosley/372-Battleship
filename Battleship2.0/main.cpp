@@ -10,6 +10,8 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "GameBoard.h"
+#include "battleship2.0.h"
+#include "PlacingShips.h"
 using std::vector;
 
 
@@ -20,6 +22,7 @@ int main() {
 	sf::RectangleShape border(sf::Vector2f(10,630));
 	sf::VertexArray outerBorder0(sf::LinesStrip, 5);
 	sf::VertexArray outerBorder1(sf::LinesStrip, 5);
+    sf::Sprite can;
 
 	//set coordinates for outerBorder of left board
 	outerBorder0[0].position = sf::Vector2f(45, 45);
@@ -68,15 +71,20 @@ int main() {
     };
     
     GameMap map;
-    if(!map.load("/Users/dlind9/Documents/Visual Studio 2015/Projects/Win32Project1/Win32_SFML/tileColors.png", sf::Vector2u (45, 45), spots, 23, 14)) {
+    if(!map.load("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/tileColors.png", sf::Vector2u (45, 45), spots, 23, 14)) {
         return -1;
     }
 	//loads font from file in textures
 	sf::Font font;
-	if (!font.loadFromFile("C:/Users/dlind9/Git_Repositories/372-Battleship/Battleship2.0/Textures/ALGER.TTF"))
+    if (!font.loadFromFile("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/ALGER.TTF"))
 	{
 		return -2;	//returns -2 if fails to load file. Usually fails because of incorrect file path
 	}
+    sf::Texture canoetext;
+    if(!canoetext.loadFromFile("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/canoe.png")) {
+        return -3;
+    }
+    
 	//sets up the various texts
 	sf::Text playerText;
 	playerText.setFont(font);
@@ -141,9 +149,18 @@ int main() {
                 case sf::Event::Closed:
                     window.close();
                     break;
-                    
                 default:
                     break;
+            }
+        }
+        
+        if(sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+            if(mousePos.x >= 45 && mousePos.x <= 495) {
+                if(mousePos.y >= 45 && mousePos.y <= 495) {
+                    can.setTexture(canoetext);
+                    can.setPosition((float) mousePos.x, (float)mousePos.y);
+                }
             }
         }
         
@@ -162,6 +179,7 @@ int main() {
 			window.draw(num);
 		}
 		window.draw(border);
+        window.draw(can);
         window.display();
     }
     
