@@ -23,6 +23,7 @@ int main() {
 	sf::VertexArray outerBorder0(sf::LinesStrip, 5);
 	sf::VertexArray outerBorder1(sf::LinesStrip, 5);
     sf::Sprite can;
+    sf::Sprite inner;
 
 	//set coordinates for outerBorder of left board
 	outerBorder0[0].position = sf::Vector2f(45, 45);
@@ -84,6 +85,11 @@ int main() {
     if(!canoetext.loadFromFile("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/canoe.png")) {
         return -3;
     }
+    sf::Texture innertubetext;
+    if(!innertubetext.loadFromFile("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/innertube.png")) {
+        return -3;
+    }
+    
     
 	//sets up the various texts
 	sf::Text playerText;
@@ -140,7 +146,7 @@ int main() {
     
     
     
-    
+    int first5 = 0;
     while(window.isOpen()) {
         sf::Event event;
         //handle all events
@@ -153,13 +159,36 @@ int main() {
                     break;
             }
         }
-        
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-            if(mousePos.x >= 45 && mousePos.x <= 495) {
+            
+            if (first5 < 5) {
                 if(mousePos.y >= 45 && mousePos.y <= 495) {
-                    can.setTexture(canoetext);
-                    can.setPosition((float) mousePos.x, (float)mousePos.y);
+                    if(mousePos.x >= 45 && mousePos.x <= 495) {
+                        int m;
+                        int n;
+                        
+                        m = mousePos.x % 45;
+                        mousePos.x = mousePos.x - m;
+                        
+                        n = mousePos.y % 45;
+                        mousePos.y = mousePos.y - n;
+                        switch (first5) {
+                            case 0:
+                                can.setTexture(canoetext);
+                            
+                                can.setPosition((float) mousePos.x, (float)mousePos.y);
+                                first5 = 1;
+                                break;
+                            case 1:
+                                inner.setTexture(innertubetext);
+                                inner.setPosition((float) mousePos.x, (float)mousePos.y);
+                                first5 = 2;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                 }
             }
         }
@@ -180,6 +209,7 @@ int main() {
 		}
 		window.draw(border);
         window.draw(can);
+        window.draw(inner);
         window.display();
     }
     
