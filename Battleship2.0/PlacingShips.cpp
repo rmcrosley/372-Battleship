@@ -25,13 +25,13 @@ pair<int, int> randomBoats() {
     pair<int, int> sf;
     int x;
     int y;
-    
+
     uniform_int_distribution<int> distrib(1, 10);
     x = distrib(gen);
     y = distrib(gen);
     sf.first = x;
     sf.second = y;
-    
+
     return sf;
 }
 
@@ -40,37 +40,38 @@ pair<int, int> randomBoats() {
 
 void placeShipsOnBoard_comp() {
     int updown;
-    
+
     Ships canoe(2);
-    
+
     while (true) {
         pair<int, int> shipfront = randomBoats();
-        
+
         if (canoe.ifTaken(shipfront) == false) {
             canoe.updateCoordinates(shipfront);
             break;
         }
     }
-    
-    
+
+
 }
 
 
-void placeShipsOnBoard_user(sf::Vector2i &mousePos) {
-   
-    Ships canoe(3);
-    
-    pair<int, int> shipfront;
-    shipfront.first = mousePos.x;
-    shipfront.second = mousePos.y;
-    
-    while (true) {
-        if(canoe.ifTaken(shipfront) == false) {
-            canoe.updateCoordinates(shipfront);
-            break;
-        }
-    }
-  
+vector<sf::RectangleShape> placeShipsOnBoard_user(vector<Ships*> fleet) {
+	sf::RectangleShape tube;
+	sf::RectangleShape canoe;
+	sf::RectangleShape kayak;
+	sf::RectangleShape yacht;
+	sf::RectangleShape cruise;
+	vector<sf::RectangleShape> shapes = {tube, canoe, kayak, yacht, cruise};
+	int count = 0;
+	for (auto &num : shapes)
+	{
+		num.setSize(sf::Vector2f(45 * fleet[count]->getLength(), 40));
+		num.setPosition(45, 47.5+45*fleet[count]->getCoordinates()[count].second);
+		count++;
+	}
+
+	return shapes;
 }
 
 

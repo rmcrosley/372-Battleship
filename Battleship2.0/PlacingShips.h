@@ -13,7 +13,7 @@
 
 pair<int, int> randomBoats();
 void placeShipsOnBoard_comp();
-void placeShipsOnBoard_user(sf::Vector2i);
+vector<sf::RectangleShape> placeShipsOnBoard_user(vector<Ships*> fleet);
 
 
 
