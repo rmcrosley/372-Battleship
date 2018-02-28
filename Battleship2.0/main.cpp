@@ -192,7 +192,7 @@ int main() {
 	shipShapes[3].setTexture(&yachtTexture);
 	shipShapes[4].setTexture(&cruiseTexture);
 
-
+	bool clicked = false;
 
 	int first5 = 0;
 	while (window.isOpen()) {
@@ -203,41 +203,51 @@ int main() {
 			case sf::Event::Closed:
 				window.close();
 				break;
+			case sf::Event::MouseButtonPressed:
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+				{
+					clicked = true;
+					cout << "You have clicked" << endl;
+					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+					if (mousePos.y >= 45 && mousePos.y <= 495)
+					{
+						if (mousePos.x >= 45 && mousePos.x <= 495)
+						{
+							int m;
+							int n;
+
+							m = mousePos.x % 45;
+							mousePos.x = mousePos.x - m;
+
+							n = mousePos.y % 45;
+							mousePos.y = mousePos.y - n;
+							sf::RectangleShape clickedShip;
+							cout << "Coordinates are: (" << mousePos.x << ", " << mousePos.y << ")" << endl;
+							for (auto ship : shipShapes) {
+								cout << "Bounds for the x are: " << ship.getPoint(0).x << " - " << ship.getPoint(2).x << endl;
+								cout << "Bounds for the y are: " << ship.getPosition().y << " - " << ship.getPosition().y+45 << endl;
+								if ((mousePos.x >= ship.getPoint(0).x && mousePos.x <= ship.getPoint(2).x)
+									&& (mousePos.y >= ship.getPosition().y-45 && mousePos.y <= ship.getPosition().y))
+								{
+									cout << "IN BOUNDS" << endl;
+									clickedShip = ship;
+									//while(clicked)	{
+									//	followMouse(std::make_pair(mousePos.x, mousePos.y), clickedShip);
+									//}
+								}
+							}
+								
+						}
+					}
+				}
+				break;
+			case sf::Event::MouseButtonReleased:
+				clicked = false;
+				break;
 			default:
 				break;
 			}
 		}
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) 
-		{
-			cout << "You have clicked" << endl;
-			sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-				if (mousePos.y >= 45 && mousePos.y <= 495) 
-				{
-					if (mousePos.x >= 45 && mousePos.x <= 495) 
-					{
-						int m;
-						int n;
-
-						m = mousePos.x % 45;
-						mousePos.x = mousePos.x - m;
-
-						n = mousePos.y % 45;
-						mousePos.y = mousePos.y - n;
-						sf::RectangleShape clickedShip;
-						cout << "Coordinates are: (" << mousePos.x << ", " << mousePos.y << ")" << endl;
-						for (auto ship : shipShapes) {
-							if (mousePos.x >= ship.getPoint(0).x && mousePos.x <= ship.getPoint(2).x )
-								if(mousePos.y >= ship.getPoint(2).y && mousePos.y <= ship.getPoint(0).y )
-									clickedShip = ship;
-						}
-						while (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
-						{
-							followMouse(std::make_pair(mousePos.x, mousePos.y), clickedShip );
-						}
-				}
-			}
-		}
-
 		window.clear();
 		window.draw(map);
 		window.draw(outerBorder0);
