@@ -14,10 +14,8 @@
 pair<int, int> randomBoats();
 void placeShipsOnBoard_comp();
 vector<sf::RectangleShape> placeShipsOnBoard_user(const vector<Ships*> & fleet);
-void followMouse(const pair<size_t, size_t> & shipFront, sf::RectangleShape & shipSprite);
-void dragAndDropUpdate(const pair<size_t, size_t> & shipFront, 
-						sf::RectangleShape & ships, 
-						Ships & ship);
+vector<sf::RectangleShape> updateShipsOnBoard_user(const vector<Ships*> & fleet, vector<sf::RectangleShape> & shapes);
+pair<size_t, size_t> getMousePosition(sf::Vector2i mousePos);
 
 
 

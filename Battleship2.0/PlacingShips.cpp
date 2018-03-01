@@ -74,19 +74,35 @@ vector<sf::RectangleShape> placeShipsOnBoard_user(const vector<Ships*> & fleet) 
 	return shapes;
 }
 
-void followMouse(const pair<size_t, size_t> & shipFront, sf::RectangleShape & shipSprite) {
-	shipSprite.setPosition(shipFront.first, shipFront.second);
+vector<sf::RectangleShape> updateShipsOnBoard_user(const vector<Ships*> & fleet, vector<sf::RectangleShape> & shapes) {
+	int count = 0;
+	for (auto &num : shapes)
+	{
+		num.setPosition(45*fleet[count]->getCoordinates()[count].first, 47.5+45*fleet[count]->getCoordinates()[count].second);
+		count++;
+	}
+
+	return shapes;
 }
 
-void dragAndDropUpdate(const pair<size_t, size_t> & shipFront, 
-						sf::RectangleShape & shipSprite, 
-						Ships & ship)	{
-	//updates the coordinates of the Ships object
-	ship.updateCoordinates(shipFront);
-	//then adjusts the sprite to the new position to be redrawn
-	shipSprite.setPosition(shipFront.first, shipFront.second);
-}
+pair<size_t, size_t> getMousePosition(sf::Vector2i mousePos)
+{
+	if (mousePos.y >= 45 && mousePos.y <= 495)
+	{
+		if (mousePos.x >= 45 && mousePos.x <= 495)
+		{
+			int m;
+			int n;
 
+			m = mousePos.x % 45;
+			mousePos.x = mousePos.x - m;
+
+			n = mousePos.y % 45;
+			mousePos.y = mousePos.y - n;
+		}
+	}
+	return std::make_pair(mousePos.x/45-1, mousePos.y/45-1);
+}
 
 
 

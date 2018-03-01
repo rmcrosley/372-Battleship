@@ -71,12 +71,12 @@ int main() {
 	};
 
 	GameMap map;
-	if (!map.load("C:/Users/dlind9/Git_Repositories/372-Battleship/Battleship2.0/Textures/tileColors.png", sf::Vector2u(45, 45), spots, 23, 14)) {
+	if (!map.load("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/tileColors.png", sf::Vector2u(45, 45), spots, 23, 14)) {
 		return -1;
 	}
 	//loads font from file in textures
 	sf::Font font;
-	if (!font.loadFromFile("C:/Users/dlind9/Git_Repositories/372-Battleship/Battleship2.0/Textures/ALGER.TTF"))
+	if (!font.loadFromFile("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/ALGER.TTF"))
 	{
 		return -2;	//returns -2 if fails to load file. Usually fails because of incorrect file path
 	}
@@ -160,23 +160,23 @@ int main() {
 	sf::Texture cruiseTexture;
 
 
-	if (!tubeTexture.loadFromFile("C:/Users/dlind9/Git_Repositories/372-Battleship/Battleship2.0/Textures/innertube.png")) {
+	if (!tubeTexture.loadFromFile("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/innertube.png")) {
 		return -3;
 	}
 
-	if (!canoeTexture.loadFromFile("C:/Users/dlind9/Git_Repositories/372-Battleship/Battleship2.0/Textures/canoe.png")) {
+	if (!canoeTexture.loadFromFile("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/canoe.png")) {
 		return -3;
 	}
 
-	if (!kayakTexture.loadFromFile("C:/Users/dlind9/Git_Repositories/372-Battleship/Battleship2.0/Textures/kayak.png")) {
+	if (!kayakTexture.loadFromFile("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/kayak.png")) {
 		return -3;
 	}
 
-	if (!yachtTexture.loadFromFile("C:/Users/dlind9/Git_Repositories/372-Battleship/Battleship2.0/Textures/yacht.png")) {
+	if (!yachtTexture.loadFromFile("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/yacht.png")) {
 		return -3;
 	}
 
-	if (!cruiseTexture.loadFromFile("C:/Users/dlind9/Git_Repositories/372-Battleship/Battleship2.0/Textures/cruiseship.png")) {
+	if (!cruiseTexture.loadFromFile("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/cruiseship.png")) {
 		return -3;
 	}
 
@@ -203,46 +203,84 @@ int main() {
 			case sf::Event::Closed:
 				window.close();
 				break;
-			case sf::Event::MouseButtonPressed:
-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			case sf::Event::KeyPressed:
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 				{
-					clicked = true;
-					cout << "You have clicked" << endl;
+					cout << "Num1 hit" << endl;
 					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-					if (mousePos.y >= 45 && mousePos.y <= 495)
+					auto m=getMousePosition(mousePos);
+					while (true)
 					{
-						if (mousePos.x >= 45 && mousePos.x <= 495)
+						if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 						{
-							int m;
-							int n;
-
-							m = mousePos.x % 45;
-							mousePos.x = mousePos.x - m;
-
-							n = mousePos.y % 45;
-							mousePos.y = mousePos.y - n;
-							sf::RectangleShape clickedShip;
-							cout << "Coordinates are: (" << mousePos.x << ", " << mousePos.y << ")" << endl;
-							for (auto ship : shipShapes) {
-								cout << "Bounds for the x are: " << ship.getPoint(0).x << " - " << ship.getPoint(2).x << endl;
-								cout << "Bounds for the y are: " << ship.getPosition().y << " - " << ship.getPosition().y+45 << endl;
-								if ((mousePos.x >= ship.getPoint(0).x && mousePos.x <= ship.getPoint(2).x)
-									&& (mousePos.y >= ship.getPosition().y-45 && mousePos.y <= ship.getPosition().y))
-								{
-									cout << "IN BOUNDS" << endl;
-									clickedShip = ship;
-									//while(clicked)	{
-									//	followMouse(std::make_pair(mousePos.x, mousePos.y), clickedShip);
-									//}
-								}
-							}
-								
+							m=getMousePosition(mousePos);
+							cout << m.first <<", "<<m.second<< endl;
+							p1[0]->updateCoordinates(getMousePosition(mousePos));
+							break;
+						}
+					}
+					
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) {
+					cout << "Num2 hit" << endl;
+					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+					auto m = getMousePosition(mousePos);
+					while (true)
+					{
+						if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+						{
+							m=getMousePosition(mousePos);
+							cout << m.first << ", " << m.second << endl;
+							p1[1]->updateCoordinates(getMousePosition(mousePos));
+							break;
 						}
 					}
 				}
-				break;
-			case sf::Event::MouseButtonReleased:
-				clicked = false;
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) {
+					cout << "Num3 hit" << endl;
+					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+					auto m = getMousePosition(mousePos);
+					while (true)
+					{
+						if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+						{
+							m=getMousePosition(mousePos);
+							cout << m.first << ", " << m.second << endl;
+							p1[2]->updateCoordinates(getMousePosition(mousePos));
+							break;
+						}
+					}
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) {
+					cout << "Num4 hit" << endl;
+					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+					auto m = getMousePosition(mousePos);
+					while (true)
+					{
+						if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+						{
+							m=getMousePosition(mousePos);
+							cout << m.first << ", " << m.second << endl;
+							p1[3]->updateCoordinates(getMousePosition(mousePos));
+							break;
+						}
+					}
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5)) {
+					cout << "Num5 hit" << endl;
+					sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+					auto m = getMousePosition(mousePos);
+					while (true)
+					{
+						if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+						{
+							m=getMousePosition(mousePos);
+							cout << m.first << ", " << m.second << endl;
+							p1[4]->updateCoordinates(getMousePosition(mousePos));
+							break;
+						}
+					}
+				}
 				break;
 			default:
 				break;
@@ -262,6 +300,12 @@ int main() {
 		{
 			window.draw(num);
 		}
+                updateShipsOnBoard_user(p1, shipShapes);
+		shipShapes[0].setTexture(&tubeTexture);
+		shipShapes[1].setTexture(&canoeTexture);
+		shipShapes[2].setTexture(&kayakTexture);
+		shipShapes[3].setTexture(&yachtTexture);
+		shipShapes[4].setTexture(&cruiseTexture);
 		for (auto &num : shipShapes)
 		{
 			window.draw(num);
