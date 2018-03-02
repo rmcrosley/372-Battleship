@@ -78,7 +78,7 @@ vector<sf::RectangleShape> updateShipsOnBoard_user(const vector<Ships*> & fleet,
 	int count = 0;
 	for (auto &num : shapes)
 	{
-		num.setPosition(45*fleet[count]->getCoordinates()[count].first, 47.5+45*fleet[count]->getCoordinates()[count].second);
+		num.setPosition(45+45*fleet[count]->getCoordinates()[0].first, 47.5+45*fleet[count]->getCoordinates()[count].second);
 		count++;
 	}
 
