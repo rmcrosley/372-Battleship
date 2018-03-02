@@ -52,7 +52,7 @@ int main() {
 
 	//grid for drawing the various tiles of our board
 	//0=dark blue square 1=light blue square
-	const int spots[] = {
+	int spots[] = {
 
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0,
@@ -192,9 +192,7 @@ int main() {
 	shipShapes[3].setTexture(&yachtTexture);
 	shipShapes[4].setTexture(&cruiseTexture);
 
-	bool clicked = false;
-
-	int first5 = 0;
+	
     bool shipsNotYetPlaced = true;
 	while (window.isOpen()) {
 		sf::Event event;
@@ -207,14 +205,14 @@ int main() {
 			case sf::Event::KeyPressed:
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
                         shipsNotYetPlaced = false;
-                    }
+                }
                     
                 if (shipsNotYetPlaced == true ) {
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
                     {
                         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                         if(mousePos.y >= 45 && mousePos.y <= 495) {
-                            if(mousePos.x >= 45 && mousePos.x <= 495) {
+                            if(mousePos.x >= 45 && mousePos.x <= 455) {
                                 int m;
                                 int n;
                                 
@@ -232,7 +230,7 @@ int main() {
                     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) {
                         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                         if(mousePos.y >= 45 && mousePos.y <= 495) {
-                            if(mousePos.x >= 45 && mousePos.x <= 495) {
+                            if(mousePos.x >= 45 && mousePos.x <= 405) {
                                 int m;
                                 int n;
                                 
@@ -250,7 +248,7 @@ int main() {
                     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) {
                         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                         if(mousePos.y >= 45 && mousePos.y <= 495) {
-                            if(mousePos.x >= 45 && mousePos.x <= 495) {
+                            if(mousePos.x >= 45 && mousePos.x <= 405) {
                                 int m;
                                 int n;
                                 
@@ -268,7 +266,7 @@ int main() {
                     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) {
                         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                         if(mousePos.y >= 45 && mousePos.y <= 495) {
-                            if(mousePos.x >= 45 && mousePos.x <= 495) {
+                            if(mousePos.x >= 45 && mousePos.x <= 360) {
                                 int m;
                                 int n;
                                 
@@ -286,7 +284,7 @@ int main() {
                     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5)) {
                         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                         if(mousePos.y >= 45 && mousePos.y <= 495) {
-                            if(mousePos.x >= 45 && mousePos.x <= 495) {
+                            if(mousePos.x >= 45 && mousePos.x <= 315) {
                                 int m;
                                 int n;
                                 
@@ -302,11 +300,41 @@ int main() {
                         }
                     }
                 }
-                    
                 if (shipsNotYetPlaced == false) {
+                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                        if(mousePos.y >= 45 && mousePos.y <= 495) {
+                            if(mousePos.x >= 540 && mousePos.x <= 990) {
+                                int m;
+                                int n;
+                                
+                                m = mousePos.x % 45;
+                                mousePos.x = mousePos.x - m;
+                                
+                                n = mousePos.y % 45;
+                                mousePos.y = mousePos.y - n;
+                                
+                                auto shotFiredAt = std::make_pair(mousePos.x/45-1, mousePos.y/45-1);
+                                
+                                bool isHit = false;
+                                for(int i = 0; i < 5; ++i) {
+                                    isHit = p1[i]->checkHit(shotFiredAt);
+                                    if(isHit == true) {
+                                        break;
+                                    }
+                                }
+                                if( isHit == true) {
+                                    spots[mousePos.x + mousePos.y * 23] = 2;
+                                }
+                                else {
+                                    spots[mousePos.x + mousePos.y * 23] = 3;
+                                }
+                                
+                            }
+                        }
                         
+                    }
                 }
-                    
                     
 				break;
 			default:
