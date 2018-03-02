@@ -48,7 +48,7 @@ public:
         
         return true;
     }
-    
+
 private:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -77,3 +77,5 @@ private:
 
 
 #endif /* GameBoard_h */
+
+

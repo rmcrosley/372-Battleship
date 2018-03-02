@@ -52,8 +52,7 @@ int main() {
 
 	//grid for drawing the various tiles of our board
 	//0=dark blue square 1=light blue square
-	const int spots[] = {
-
+	int spots[] = {
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0,
 		0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
@@ -71,12 +70,12 @@ int main() {
 	};
 
 	GameMap map;
-	if (!map.load("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/tilesHitMiss.png", sf::Vector2u(45, 45), spots, 23, 14)) {
+	if (!map.load("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/tilesHitMiss.png", sf::Vector2u(45, 45), spots, 23, 14)) {
 		return -1;
 	}
 	//loads font from file in textures
 	sf::Font font;
-	if (!font.loadFromFile("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/ALGER.TTF"))
+	if (!font.loadFromFile("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/ALGER.TTF"))
 	{
 		return -2;	//returns -2 if fails to load file. Usually fails because of incorrect file path
 	}
@@ -160,23 +159,23 @@ int main() {
 	sf::Texture cruiseTexture;
 
 
-	if (!tubeTexture.loadFromFile("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/innertube.png")) {
+	if (!tubeTexture.loadFromFile("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/innertube.png")) {
 		return -3;
 	}
 
-	if (!canoeTexture.loadFromFile("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/canoe.png")) {
+	if (!canoeTexture.loadFromFile("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/canoe.png")) {
 		return -3;
 	}
 
-	if (!kayakTexture.loadFromFile("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/kayak.png")) {
+	if (!kayakTexture.loadFromFile("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/kayak.png")) {
 		return -3;
 	}
 
-	if (!yachtTexture.loadFromFile("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/yacht.png")) {
+	if (!yachtTexture.loadFromFile("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/yacht.png")) {
 		return -3;
 	}
 
-	if (!cruiseTexture.loadFromFile("/Users/rachelcrosley/Documents/Software Construction/Battleship3.0/Battleship3.0/Textures/cruiseship.png")) {
+	if (!cruiseTexture.loadFromFile("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/cruiseship.png")) {
 		return -3;
 	}
 
@@ -304,7 +303,22 @@ int main() {
                 }
                     
                 if (shipsNotYetPlaced == false) {
-                        
+                    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                    if(mousePos.y >= 45 && mousePos.y <= 495) {
+                            if(mousePos.x >= 540 && mousePos.x <= 990) {
+                                int m;
+                                int n;
+                                
+                                m = mousePos.x % 45;
+                                mousePos.x = mousePos.x - m;
+                                
+                                n = mousePos.y % 45;
+                                mousePos.y = mousePos.y - n;
+                                int clicked_x=mousePos.x/45;
+                                int clicked_y=mousePos.y/45;
+                                spots[clicked_x+clicked_y*23]=2;
+                            }
+                    }
                 }
                     
                     
@@ -314,6 +328,10 @@ int main() {
 			}
 		}
 		window.clear();
+                
+                if (!map.load("C:/Users/Overlord Dan/Documents/372-Battleship/Battleship2.0/Textures/tilesHitMiss.png", sf::Vector2u(45, 45), spots, 23, 14)) {
+		return -1;
+                }
 		window.draw(map);
 		window.draw(outerBorder0);
 		window.draw(outerBorder1);
