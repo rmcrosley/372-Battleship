@@ -1,0 +1,46 @@
+Daniel 's Journal
+
+Feb. 16:
+	-Made some tests for the Ships class
+	-Prototyped the Ships class
+	-Spent several hours trying to get SFML to work
+	-Gave up in frustration and stuck to the lab where it worked
+
+Feb. 17
+	-Wrote some more tests
+	-Created functions for the coordinates of the ship
+	-Realized my git file pushing was adding random crap we didn't need,
+		deleted it and figured out how to not have that in my pushes.
+	-Spent couple hours trying to fix merge conflicts
+
+Feb. 18
+	-Added count to Ships class so that they will default construct correctly
+	-Added tests for the Orientation of the ship
+	-Fixed code up to pass the test
+
+Feb. 19
+	-Added tests for updating the coordinates
+	-Wrote code to work with the tests
+
+Feb. 27
+	-Fixed gameboard not drawing correctly
+	-Added some more graphics to our gameboard to make it look nicer
+	-Added fonts and text
+
+Feb. 28
+	-Got our boats to draw themselves correctly on board at start
+	-Tried to add drag and drop for several hours
+	-Managed to get the boats to at least move, but not correctly.
+	-Gave up on drag and drop.
+
+Mar. 1
+	-Deleted all drag and drop code and switched to hitting number pad keys
+		then clicking to move them
+	-Fixed movements to work correctly
+	-Tried to add a lock so you can't move after game start, failed
+	-Wrote code so that you can fire at enemy board
+	-Tiles change now when hit
+	-Struggled with merge conflicts
+	-Properly detects ship hits but ships aren't generated randomly
+	
+	
