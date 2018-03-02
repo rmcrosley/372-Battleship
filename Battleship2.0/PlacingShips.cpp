@@ -85,24 +85,29 @@ vector<sf::RectangleShape> updateShipsOnBoard_user(const vector<Ships*> & fleet,
 	return shapes;
 }
 
-pair<size_t, size_t> getMousePosition(sf::Vector2i mousePos)
+pair<size_t, size_t> getMousePosition(sf::Vector2i mousePos, bool shipsNotYetPlaced)
 {
-	if (mousePos.y >= 45 && mousePos.y <= 495)
-	{
-		if (mousePos.x >= 45 && mousePos.x <= 495)
-		{
-			int m;
-			int n;
+    //if(shipsNotYetPlaced == true) {
+        if (mousePos.y >= 45 && mousePos.y <= 495)
+        {
+            if (mousePos.x >= 45 && mousePos.x <= 495)
+            {
+                int m;
+                int n;
 
-			m = mousePos.x % 45;
-			mousePos.x = mousePos.x - m;
+                m = mousePos.x % 45;
+                mousePos.x = mousePos.x - m;
 
-			n = mousePos.y % 45;
-			mousePos.y = mousePos.y - n;
-		}
-	}
-	return std::make_pair(mousePos.x/45-1, mousePos.y/45-1);
+                n = mousePos.y % 45;
+                mousePos.y = mousePos.y - n;
+            }
+        }
+        
+    
+    
+    return std::make_pair(mousePos.x/45-1, mousePos.y/45-1);
 }
+
 
 
 

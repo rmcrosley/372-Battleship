@@ -15,7 +15,7 @@ pair<int, int> randomBoats();
 void placeShipsOnBoard_comp();
 vector<sf::RectangleShape> placeShipsOnBoard_user(const vector<Ships*> & fleet);
 vector<sf::RectangleShape> updateShipsOnBoard_user(const vector<Ships*> & fleet, vector<sf::RectangleShape> & shapes);
-pair<size_t, size_t> getMousePosition(sf::Vector2i mousePos);
+pair<size_t, size_t> getMousePosition(sf::Vector2i mousePos, bool shipsNotYetPlaced);
 
 
 
