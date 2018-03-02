@@ -96,13 +96,11 @@ int main() {
 	Ships p2Yacht(4);
 	Ships p2Cruise(5);
 
-	vector<Ships*> p2;
-	p2.push_back(&p1Tube);
-	p2.push_back(&p1Kayak);
-	p2.push_back(&p1Canoe);
-	p2.push_back(&p1Yacht);
-	p2.push_back(&p1Cruise);
-
+	vector<Ships*> p2 = { &p2Tube, &p2Kayak, &p2Canoe, &p2Yacht, &p2Cruise };
+        for(auto & num : p2)
+        {
+            num->updateCoordinates(randomBoats());
+        }
 
 	//sets up the various texts
 	sf::Text playerText;
@@ -316,7 +314,17 @@ int main() {
                                 mousePos.y = mousePos.y - n;
                                 int clicked_x=mousePos.x/45;
                                 int clicked_y=mousePos.y/45;
-                                spots[clicked_x+clicked_y*23]=2;
+                                auto shotCoordinate=std::make_pair(clicked_x-12, clicked_y-1);
+                                for(auto num : p2)
+                                {
+                                    if(num->checkHit(shotCoordinate))
+                                    {
+                                        spots[clicked_x+clicked_y*23]=2;
+                                    }
+                                    else if(!num->checkHit(shotCoordinate))    {
+                                        spots[clicked_x+clicked_y*23]=3;
+                                    }
+                                }
                             }
                     }
                 }
