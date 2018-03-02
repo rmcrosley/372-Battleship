@@ -39,15 +39,52 @@ pair<int, int> randomBoats() {
 
 
 void placeShipsOnBoard_comp() {
-    int updown;
-
-    Ships canoe(2);
-
+   
+    Ships canoe(3);
     while (true) {
         pair<int, int> shipfront = randomBoats();
 
         if (canoe.ifTaken(shipfront) == false) {
             canoe.updateCoordinates(shipfront);
+            break;
+        }
+    }
+    
+    Ships innertube(2);
+    while (true) {
+        pair<int, int> shipfront = randomBoats();
+        
+        if (innertube.ifTaken(shipfront) == false) {
+            innertube.updateCoordinates(shipfront);
+            break;
+        }
+    }
+    
+    Ships kayak(3);
+    while (true) {
+        pair<int, int> shipfront = randomBoats();
+        
+        if (kayak.ifTaken(shipfront) == false) {
+            kayak.updateCoordinates(shipfront);
+            break;
+        }
+    }
+    
+    Ships yacht(4);
+    while (true) {
+        pair<int, int> shipfront = randomBoats();
+        
+        if (yacht.ifTaken(shipfront) == false) {
+            yacht.updateCoordinates(shipfront);
+            break;
+        }
+    }
+    Ships cruiseShip(5);
+    while (true) {
+        pair<int, int> shipfront = randomBoats();
+        
+        if (cruiseShip.ifTaken(shipfront) == false) {
+            cruiseShip.updateCoordinates(shipfront);
             break;
         }
     }
@@ -83,29 +120,6 @@ vector<sf::RectangleShape> updateShipsOnBoard_user(const vector<Ships*> & fleet,
 	}
 
 	return shapes;
-}
-
-pair<size_t, size_t> getMousePosition(sf::Vector2i mousePos, bool shipsNotYetPlaced)
-{
-    //if(shipsNotYetPlaced == true) {
-        if (mousePos.y >= 45 && mousePos.y <= 495)
-        {
-            if (mousePos.x >= 45 && mousePos.x <= 495)
-            {
-                int m;
-                int n;
-
-                m = mousePos.x % 45;
-                mousePos.x = mousePos.x - m;
-
-                n = mousePos.y % 45;
-                mousePos.y = mousePos.y - n;
-            }
-        }
-        
-    
-    
-    return std::make_pair(mousePos.x/45-1, mousePos.y/45-1);
 }
 
 
