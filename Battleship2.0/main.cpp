@@ -215,6 +215,7 @@ int main() {
 						{
 							m=getMousePosition(mousePos);
 							cout << m.first <<", "<<m.second<< endl;
+                                                        m.first=m.first+1;
 							p1[0]->updateCoordinates(getMousePosition(mousePos));
 							break;
 						}
